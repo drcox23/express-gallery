@@ -1,7 +1,7 @@
 version: '3'
 services:
   my-app:
-    image: jefrady/express-gallery:${IMAGE_VERSION}-local
+    image: demifire/express-gallery:${IMAGE_VERSION}-local
     command: ['npm', 'run', 'dev']
     container_name: my-app
     volumes:
