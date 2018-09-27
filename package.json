@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate": "POSTGRES_HOSTNAME=localhost npx knex migrate:latest",
+    "seed": "POSTGRES_HOSTNAME=localhost npx knex seed:run"
   },
   "repository": {
     "type": "git",
