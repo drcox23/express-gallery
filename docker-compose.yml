@@ -1,5 +1,5 @@
 version: '3'
 services:
-  my-app:
+  express-gallery:
     build: .
     image: jefrady/express-gallery:local

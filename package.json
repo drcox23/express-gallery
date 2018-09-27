@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/drcox23/express-gallery/issues"
   },
-  "homepage": "https://github.com/drcox23/express-gallery#readme"
+  "homepage": "https://github.com/drcox23/express-gallery#readme",
+  "dependencies": {
+    "nodemon": "^1.18.4"
+  }
 }
