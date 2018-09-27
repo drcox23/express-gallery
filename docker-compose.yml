@@ -1,5 +1,5 @@
 version: '3'
 services:
-  my-app:
+  express-gallery:
     build: .
     image: demifire/express-gallery:local
