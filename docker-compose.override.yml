@@ -1,0 +1,20 @@
+version: '3'
+services:
+  my-app:
+    image: jefrady/express-gallery:${IMAGE_VERSION}-local
+    command: ['npm', 'run', 'dev']
+    container_name: my-app
+    volumes:
+      - ".:/app/:rw"
+    env_file: .env
+    environment:
+      NODE_ENV: development
+    ports:
+      - "${PORT}:${PORT}"
+      - '3000:3000'
+      - '3001:3001'
+    networks:
+      - my-app-network
+
+networks:
+  my-app-network:
