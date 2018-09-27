@@ -5,7 +5,7 @@ services:
     depends_on: 
       - db
       # this creates a dependency tree
-    command: ["./node_modules/.bin/nodemon", "app.js"]
+    command: ["./node_modules/.bin/nodemon", "app.js", "npm", "run", "dev"]
     container_name: expressGallery
     volumes:
       - ".:/app/:rw"
