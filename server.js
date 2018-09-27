@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const knex = require('./db/knex.js')
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
-// const Tasks = require('./db/models/Tasks');
+// const Photos = require('./db/models/Photos');
 // const Users = require('./db/models/Users');
 
 const app = express();
