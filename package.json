@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "migrate": "POSTGRES_HOSTNAME=localhost npx knex migrate:latest",
-    "seed": "POSTGRES_HOSTNAME=localhost npx knex seed:run"
+    "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=8765 npx knex migrate:latest",
+    "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=8765 npx knex seed:run"
   },
   "repository": {
     "type": "git",
