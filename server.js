@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const knex = require('./db/knex.js')
+// const knex = require('./knex/knex.js')
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
-const Photos = require('./db/models/Photos');
-const Users = require('./db/models/Users');
+const Photos = require('./knex/models/Photos');
+const Users = require('./knex/models/Users');
 
 const app = express();
 
