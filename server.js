@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const knex = require('./knex/knex.js')
+const expressHbs = require('express-handlebars');
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const Images = require('./knex/models/Images');
@@ -10,6 +11,12 @@ const galleryRoutes = require("./routes/galleryRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
+
+
+// app.use(express.static('public'));
+app.engine('.hbs', expressHbs({ defaultLayout: 'main', extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -27,15 +34,13 @@ app.get('/', (req, res) => {
   Images
     .fetchAll()
     .then(images => {
-      res.json(images.serialize())
+      res.render('home', images)
     })
     .catch(err => {
       res.json("get all error: ", err);
     })
 
-})
-
-
+  })
 
 
 // // get all users

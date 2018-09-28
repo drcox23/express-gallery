@@ -1,0 +1,16 @@
+{{> header }} 
+<h1>Gallery</h1>
+{{#each image}}
+    {{ title }}
+    <p>Hellooooooo</p>
+    {{!-- <li data-postid="{{id}}">
+        <a href='/gallery/{{id}}'>
+        <img src="{{ image }}"/>
+        <p>{{ title }}</p>
+    <   /a>
+    </li> --}}
+{{/each}}
+
+<a class='button' href="/gallery/new">Upload</a>
+
+{{> footer }}

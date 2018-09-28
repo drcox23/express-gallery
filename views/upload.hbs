@@ -1,0 +1,16 @@
+{{> header }} 
+
+<form action="/gallery/new" method="post">
+  <label>Author:
+    <input type="text" name="name" id="" required>
+  </label>
+  <label>Price:
+    <input type="number" step=".01" name="price" id="" required>
+  </label>
+   <label>Inventory:
+    <input type="number" name="inventory" id="" required>
+  </label>
+  <input type="submit" value="Submit" required>
+</form>
+
+{{> footer }}
