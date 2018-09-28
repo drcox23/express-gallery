@@ -34,7 +34,9 @@ app.get('/', (req, res) => {
   Images
     .fetchAll()
     .then(images => {
-      res.render('home', { images })
+      const photos = images.toJSON();
+      console.log("photo info: ", photos);
+      res.render('home', { photos })
     })
     .catch(err => {
       res.json("get all error: ", err);

@@ -1,14 +1,15 @@
+
 {{> header }} 
 <h1>Gallery</h1>
-{{#each images}}
+{{#each photos }}
     {{ title }}
-    <p>Hellooooooo</p>
-    {{!-- <li data-postid="{{id}}">
+    {{!-- <p>Hellooooooo</p> --}}
+    <li data-postid="{{id}}">
         <a href='/gallery/{{id}}'>
-        <img src="{{ image }}"/>
+        <img src="{{ link }}"/>
         <p>{{ title }}</p>
-    <   /a>
-    </li> --}}
+    </a>
+    </li>
 {{/each}}
 
 <a class='button' href="/gallery/new">Upload</a>
