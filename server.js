@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   Images
     .fetchAll()
     .then(images => {
-      res.render('home', images)
+      res.render('home', { images })
     })
     .catch(err => {
       res.json("get all error: ", err);
