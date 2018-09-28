@@ -1,16 +1,13 @@
 const bookshelf = require('./bookshelf');
 
 const Users = bookshelf.Model.extend({
-  tableName: 'user',
+  tableName: 'users',
   idAttribute: 'user_id',
-  hasTimestamps: true 
+  hasTimestamps: true,
+  images: () => {
+    this.hasMany(Images)
+  }
 })
 
-// class Users extends bookshelf.Model {
-//   get tableName() {return 'user'}
-//   get idAttribute() {return 'user_id'}
-//   get hasTimestamps() {return true}
-// }
 
 module.exports = Users;
-

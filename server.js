@@ -3,22 +3,40 @@ const bodyParser = require('body-parser');
 // const knex = require('./knex/knex.js')
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
-const Photos = require('./knex/models/Photos');
+const Images = require('./knex/models/Images');
 const Users = require('./knex/models/Users');
+
+const galleryRoutes = require("./routes/galleryRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-app.use(express.static( __dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use("/gallery", galleryRoutes);
+// app.use("/user", userRoutes);
 
 // GET HOME
 app.get('/', (req, res) => {
-  res.sendfile('./index.html')
+  // res.sendfile('./index.html');
   // res.send('sanity check')
+  console.log("It's working!");
+  Images
+    .fetchAll()
+    .then(images => {
+      res.json(images.serialize())
+    })
+    .catch(err => {
+      res.json("get all error: ", err);
+    })
+
 })
+
+
+
 
 // // get all users
 // app.get('/api/users', (req, res) => {
@@ -67,7 +85,7 @@ app.get('/', (req, res) => {
 // // update task by task id
 // app.put('/api/photos/:task_id/edit', (req, res) => {
 //   const { task_id } = req.params;
-  
+
 //   const payload = {
 //     name: req.body.name,
 //     is_complete: req.body.is_complete
@@ -91,7 +109,7 @@ app.get('/', (req, res) => {
 // // delete task by task id
 // app.delete('/api/photos/:photo_id/delete', (req, res) => {
 //   const { task_id } = req.params;
-  
+
 //   Photos
 //     .where({ task_id })
 //     .destroy()
