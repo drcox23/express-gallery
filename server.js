@@ -9,51 +9,60 @@ const Users = require('./knex/models/Users');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.get('/', (req, res) => {
   res.send('sanity check')
+  console.log('we have a connection')
 })
 
 // get all users
 app.get('/api/users', (req, res) => {
   Users
-  .fetchAll()
-  .then( users => {
-    res.json(users.serialize());
-  })
-  .catch( err => {
-    res.json(err);
-  })
+    .fetchAll()
+    .then(users => {
+      res.json(users.serialize());
+    })
+    .catch(err => {
+      res.json(err);
+    })
 })
 
 // get all photos by user_id
 app.get('/api/users/:user_id/photos', (req, res) => {
-  const { user_id } = req.params;
+  const {
+    user_id
+  } = req.params;
   Photos
-    .where({user_id})
+    .where({
+      user_id
+    })
     .fetchAll()
-    .then( photos => {
+    .then(photos => {
       res.json(photos.serialize())
     })
-    .catch( err => {
+    .catch(err => {
       res.json(err);
     })
 })
 
 // create task by user id
 app.post('/api/users/:user_id/photos/new', (req, res) => {
-  const { user_id } = req.params;
+  const {
+    user_id
+  } = req.params;
   const payload = {
     name: req.body.name
   }
   Photos
     .forge(payload)
     .save()
-    .then( result => {
+    .then(result => {
       res.json(result)
     })
-    .catch( err => {
+    .catch(err => {
       console.log('error', err)
       res.json(err);
     })
@@ -61,20 +70,24 @@ app.post('/api/users/:user_id/photos/new', (req, res) => {
 
 // update task by task id
 app.put('/api/photos/:task_id/edit', (req, res) => {
-  const { task_id } = req.params;
-  
+  const {
+    task_id
+  } = req.params;
+
   const payload = {
     name: req.body.name,
     is_complete: req.body.is_complete
   }
 
   Photos
-    .where({task_id})
+    .where({
+      task_id
+    })
     .fetch()
-    .then( task => {
+    .then(task => {
       return task.save(payload)
     })
-    .then( result => {
+    .then(result => {
       console.log('result', result)
       res.json(result);
     })
@@ -85,12 +98,16 @@ app.put('/api/photos/:task_id/edit', (req, res) => {
 
 // delete task by task id
 app.delete('/api/photos/:photo_id/delete', (req, res) => {
-  const { task_id } = req.params;
-  
+  const {
+    task_id
+  } = req.params;
+
   Photos
-    .where({ task_id })
+    .where({
+      task_id
+    })
     .destroy()
-    .then( result => {
+    .then(result => {
       res.json(result);
     })
     .catch(err => {

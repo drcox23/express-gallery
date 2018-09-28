@@ -1,27 +1,28 @@
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('user').del()
+  return knex('users').del()
     .then(() => {
-      return knex('task').del()
+      return knex('images').del()
     })
     .then(() => {
       // insert seed entries
-      return knex('user').insert([{
-          email: 'mrRoboto@gmail.com',
+      return knex('users').insert([{
+          username: 'BobRoss',
           password: 'password123'
         },
         {
-          email: 'daKine@yahoo.com',
-          password: '123password'
+          username: 'Admin',
+          password: '123password',
+          isAdmin: true
         }
-
       ]);
     })
     .then(() => {
-      return knex('task').insert([{
-        name: 'Test Name',
-        is_complete: 'false',
-
+      return knex('images').insert([{
+        title: 'Hawaiian Beach',
+        author: 'Pele',
+        link: 'google.com',
+        description: "Who doesn't love long sunset walks on a beautiful beach in Hawaii"
       }])
     })
 
