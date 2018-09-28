@@ -21,7 +21,7 @@ exports.seed = function (knex, Promise) {
       return knex('images').insert([{
         title: 'Hawaiian Beach',
         author: 'Pele',
-        link: 'google.com',
+        link: 'http://www.kailuachamber.com/Content/Pictures/Picture.ashx?PicId=221780&Size=S',
         description: "Who doesn't love long sunset walks on a beautiful beach in Hawaii"
       }])
     })
