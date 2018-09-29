@@ -1,0 +1,16 @@
+{{> header }} 
+
+<form action="/gallery/new" method="post">
+  <label>Author:
+    <input type="text" name="author" value="{{author}}" id="" required>
+  </label>
+  <label>Link:
+    <input type="text" name="link" value="{{link}}"id="" required>
+  </label>
+   <label>Description:
+    <textarea rows="10" cols="30" name="description" id="" required>{{description}}</textarea>
+  </label>
+  <input type="submit" value="Submit" required>
+</form>
+
+{{> footer }}

@@ -38,19 +38,19 @@ router.post('/new', (req, res) => {
 //get individual gallery image
 router.get('/:id', (req, res) => {
   // res.json("sanity check");
-  const image_id = req.params.id;
-  console.log("image id: ", image_id);
-  Images
-    .where({
-      image_id
-    })
-    .fetch()
-    .then(image => {
-      res.json(image);
-    })
-    .catch(err => {
-      res.json(err);
-    })
+   const image_id = req.params.id;
+   console.log("image id: ", image_id);
+     Images
+       .where({image_id})
+       .fetch()
+       .then( image => {
+        const photos = image.toJSON();
+        console.log("photo info: ", photos);
+        res.render('idp', photos)
+       })
+       .catch( err => {
+         res.json(err);
+       })
 
 })
 
