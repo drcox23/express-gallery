@@ -15,7 +15,9 @@ router.get('/:id', (req, res) => {
        .where({image_id})
        .fetch()
        .then( image => {
-         res.json(image);
+        const photos = image.toJSON();
+        console.log("photo info: ", photos);
+        res.render('idp', photos)
        })
        .catch( err => {
          res.json(err);
