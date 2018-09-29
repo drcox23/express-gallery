@@ -2,7 +2,7 @@ const bookshelf = require('./bookshelf')
 
 const Images = bookshelf.Model.extend({
   tableName: 'images',
-  // idAttribute: 'image_id',
+  idAttribute: 'image_id',
 
   hasTimestamps: true
 })

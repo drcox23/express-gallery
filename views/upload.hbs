@@ -1,6 +1,8 @@
+
 {{> header }} 
 
 <form action="/gallery/new" method="post">
+{{#if addImage}}
   <label>Author:
     <input type="text" name="name" id="" required>
   </label>
@@ -12,5 +14,6 @@
   </label>
   <input type="submit" value="Submit" required>
 </form>
+{{/if}}
 
 {{> footer }}

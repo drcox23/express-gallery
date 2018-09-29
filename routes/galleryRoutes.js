@@ -7,6 +7,33 @@ const Images = require('../knex/models/Images');
 
 // router.get('/', (req, res) => )
 
+//'get' for adding a new image 
+router.get('/new', (req, res) => {
+  console.log("adding a new image")
+  const addImage = true
+    res.render('upload', { addImage });
+})
+
+router.post('/new', (req, res) => {
+  console.log("new image added")
+  const newImage = req.body;
+  console.log("info to add:", newImage);
+  new Images ({
+    title: `${newImage.title}`, 
+    author: `${newImage.author}`, 
+    link: `${newImage.link}`, 
+    description: `${newImage.description}`, 
+    featured: `${newImage.featured}`})
+  .save()
+  // this.knex.raw(`INSERT INTO images (title, author, link, description, featured) VALUES ('${newImage.title}', '${newImage.author}', '${newImage.link}', '${newImage.description}', ${newImage.featured})`)
+  .then(results => {
+    res.redirect("/gallery");
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
 
 //get individual gallery image
 router.get('/:id', (req, res) => {
@@ -26,6 +53,25 @@ router.get('/:id', (req, res) => {
     })
 
 })
+
+// get to edit an individual gallery photo
+router.get('/:id/edit', (req, res) => {
+  const image_id = req.params.id;
+  console.log("editing image: ", image_id);
+  Images
+    .where({image_id})
+    .fetchAll()
+    .then(results => {
+      // console.log("results: ", results.length)
+      res.json(results);
+    })
+    .catch(err => {
+      res.json(err);
+    })
+})
+
+
+
 
 
 
