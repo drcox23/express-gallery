@@ -6,12 +6,15 @@
     <br> <img src="{{ link }}">
     <br> {{ author }} {{ description }}
     <br>
-    <a href="/gallery/{{id}}/edit" type=button>Edit</a>
+    {{!-- <a href="/gallery/{{image_id}}/edit" type=button>Edit</a> --}}
 </div>
 <div class='new'>
-    <form method="post" action="/articles/{{id}}?_method=DELETE">
-    <button class='button' type='submit'>Delete</button>
-</form>
+    <form method="get" action="{{ image_id }}/edit">
+        <button class='button' type='submit'>Edit</button>
+    </form>
+    <form method="post" action="/gallery/{{image_id}}?_method=DELETE">
+        <button class='button' type='submit'>Delete</button>
+    </form>
 </div>
 
 {{> footer }}

@@ -1,20 +1,21 @@
 
 {{> header }}
 <h1>Gallery</h1>
+{{#each photos }}
+    {{#if featured}}
+        <div class='featured'>
+            <img src="{{ link }}" />
+        </div>
+    {{/if}}
+{{/each}}
 
 {{#each photos }}
-    {{#if featured }}
-<h2>{{title}}</h2>
-    {{/if}}
-
-{{ title }}
-{{!-- <p>Hellooooooo</p> --}}
-<li data-postid="{{id}}">
-    <a href='/gallery/{{id}}'>
-        <img src="{{ link }}" />
-        <p>{{ title }}</p>
-    </a>
-</li>
+    <li data-postid="{{ image_id }}">
+        <a href='/gallery/{{ image_id }}'>
+            <img src="{{ link }}" />
+            <p>{{ title }} {{ link }}</p>
+        </a>
+    </li>
 {{/each}}
 
 <a class='button' href="/gallery/new">Upload</a>

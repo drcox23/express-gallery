@@ -62,8 +62,9 @@ router.get('/:id/edit', (req, res) => {
     .where({image_id})
     .fetchAll()
     .then(results => {
-      // console.log("results: ", results.length)
-      res.json(results);
+      const photos = results.toJSON();
+      console.log("results: ", photos[0])
+      res.render('edit', photos[0])
     })
     .catch(err => {
       res.json(err);
