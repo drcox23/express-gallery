@@ -5,21 +5,25 @@ const router = express.Router();
 const Images = require('../knex/models/Images');
 // const knex = require('../knex/knex.js')
 
+// router.get('/', (req, res) => )
+
 
 //get individual gallery image
 router.get('/:id', (req, res) => {
   // res.json("sanity check");
-   const image_id = req.params.id;
-   console.log("image id: ", image_id);
-     Images
-       .where({image_id})
-       .fetch()
-       .then( image => {
-         res.json(image);
-       })
-       .catch( err => {
-         res.json(err);
-       })
+  const image_id = req.params.id;
+  console.log("image id: ", image_id);
+  Images
+    .where({
+      image_id
+    })
+    .fetch()
+    .then(image => {
+      res.json(image);
+    })
+    .catch(err => {
+      res.json(err);
+    })
 
 })
 

@@ -14,15 +14,16 @@ const app = express();
 
 
 // app.use(express.static('public'));
-app.engine('.hbs', expressHbs({ defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', expressHbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}));
 app.set('view engine', '.hbs');
 
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use("/gallery", galleryRoutes);
 // app.use("/user", userRoutes);
 
@@ -36,13 +37,22 @@ app.get('/', (req, res) => {
     .then(images => {
       const photos = images.toJSON();
       console.log("photo info: ", photos);
-      res.render('home', { photos })
+      if (photos.featured === true) {
+        const featured = photos;
+        console.log("featured photo", featured)
+        res.render('home', {
+          featured
+        })
+      }
+      res.render('home', {
+        photos
+      })
     })
     .catch(err => {
       res.json("get all error: ", err);
     })
 
-  })
+})
 
 
 // // get all users

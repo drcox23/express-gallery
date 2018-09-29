@@ -16,6 +16,7 @@ exports.up = function (knex, Promise) {
       table.string('author').notNullable();
       table.string('link').notNullable();
       table.string('description').notNullable();
+      table.boolean('featured').notNullable().defaultTo(false); 
       // table.boolean('is_complete').defaultTo(false);
       table.integer('user_id').references('user_id').inTable('users').onDelete('cascade');
       table.timestamps(true, true);
