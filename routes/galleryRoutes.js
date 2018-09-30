@@ -9,15 +9,15 @@ const Images = require('../knex/models/Images');
 router.get('/', (req, res) => {
   // res.sendfile('./index.html');
   // res.send('sanity check')
-  console.log("It's working!");
+  // console.log("It's working!");
   Images
     .fetchAll()
     .then(images => {
       const photos = images.toJSON();
-      console.log("photo info: ", photos);
+      // console.log("photo info: ", photos);
       if (photos.featured === true) {
         const featured = photos;
-        console.log("featured photo", featured)
+        // console.log("featured photo", featured)
         res.render('home', {
           featured
         })
@@ -42,7 +42,7 @@ router.get('/new', (req, res) => {
 
 // adding a new image to the gallery
 router.post('/new', (req, res) => {
-  console.log("new image added")
+  // console.log("new image added")
   const newImage = req.body;
   // console.log("info to add:", newImage);
    Images
@@ -67,13 +67,13 @@ router.post('/new', (req, res) => {
 router.get('/:id', (req, res) => {
   // res.json("sanity check");
    const image_id = req.params.id;
-   console.log("image id: ", image_id);
+  //  console.log("image id: ", image_id);
      Images
        .where({image_id})
        .fetch()
        .then( image => {
         const photos = image.toJSON();
-        console.log("get image")
+        // console.log("get image")
         // console.log("photo info: ", photos);
         res.render('idp', photos)
        })
@@ -87,8 +87,8 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const data = req.body;
   const  image_id  = req.params.id
-  console.log("whats the id", image_id);
-  console.log("the data goods: ", data);
+  // console.log("whats the id", image_id);
+  // console.log("the data goods: ", data);
 
   const newInfo = {
     title: data.title,
@@ -106,11 +106,11 @@ router.put('/:id', (req, res) => {
     })
     .then(results => {
       const photos = results.toJSON()
-      console.log("checking put stuff:", photos)
+      // console.log("checking put stuff:", photos)
       res.render('idp', photos)
     })
     .catch(err => {
-      console.log("put error: ", err)
+      // console.log("put error: ", err)
     })
 
 })
@@ -135,7 +135,7 @@ router.get('/:id/edit', (req, res) => {
 router.delete('/:id', (req, res) => {
   
   const image_id = req.params.id;
-  console.log("delete: ", image_id);
+  // console.log("delete: ", image_id);
 
   Images
   .where({image_id})
