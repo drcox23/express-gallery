@@ -50,20 +50,20 @@
 }
 
 .gallery {
-    grid-column: 1/7;
+    grid-column: 2/6;
+    grid-row: 1/1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
-}
+};
 
-.post{
-    grid-column: span 1;
+.card {
+    max-width: 100%;
+    grid-column: 1fr;
     img {
-        object-fit: cover;
         width: 100%;
-        max-height: 100%;
+        height: auto;
     }
-
 }
 
 
@@ -73,5 +73,6 @@
 .footer {
     grid-column: 1/7;
     grid-row: 3/3;
+    height: 80px;
     background-color: aquamarine;
 }

@@ -11,14 +11,16 @@
     {{/each}}
     <div class='gallery'>
         {{#each photos }}
-            <div class='post' data-postid="{{ image_id }}">
-                <a href='/gallery/{{ image_id }}'>
-                    <img src="{{ link }}" />
-                    <p>{{ title }} {{ link }}</p>
-                </a>
-            </div>
+            <a class='card' href='/gallery/{{ image_id }}'>
+                <img class='card-image' src="{{ link }}" />
+                {{ title }}
+            </a>
+            
         {{/each}}
+
+
     </div>
+       
 
 
     <a class='button' href="/gallery/new">Upload</a>
