@@ -14,23 +14,26 @@ router.get('/new', (req, res) => {
     res.render('upload', { addImage });
 })
 
+
+// adding a new image to the gallery
 router.post('/new', (req, res) => {
   console.log("new image added")
   const newImage = req.body;
   console.log("info to add:", newImage);
-  new Images ({
-    title: `${newImage.title}`, 
-    author: `${newImage.author}`, 
-    link: `${newImage.link}`, 
-    description: `${newImage.description}`, 
-    featured: `${newImage.featured}`})
+   Images
+   .forge({
+    title: newImage.title, 
+    author: newImage.author, 
+    link: newImage.link,
+    description: newImage.description
+    // featured: `${newImage.featured}`
+  })
   .save()
-  // this.knex.raw(`INSERT INTO images (title, author, link, description, featured) VALUES ('${newImage.title}', '${newImage.author}', '${newImage.link}', '${newImage.description}', ${newImage.featured})`)
   .then(results => {
-    res.redirect("/gallery");
+    res.redirect("/");
   })
   .catch(err => {
-    res.json(err)
+    res.send(err)
   })
 })
 
