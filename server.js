@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const knex = require('./knex/knex.js')
 const expressHbs = require('express-handlebars');
+const methodOverride = require('method-override')
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const Images = require('./knex/models/Images');
@@ -20,6 +21,8 @@ app.engine('.hbs', expressHbs({
 }));
 app.set('view engine', '.hbs');
 
+app.use(methodOverride("X-HTTP-Method-Override"));
+app.use(methodOverride("_method"));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
