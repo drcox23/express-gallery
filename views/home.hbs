@@ -1,23 +1,25 @@
+<div class='content'>
+    {{#each photos }}
+        {{#if featured}}
+            <div class='featured'>
+                <a href='/gallery/{{ image_id }}'>
+                    <img src="{{ link }}" />    
+                </a>
+            </div>
+            <br>
+        {{/if}}
+    {{/each}}
+    <div class='gallery'>
+        {{#each photos }}
+            <div class='post' data-postid="{{ image_id }}">
+                <a href='/gallery/{{ image_id }}'>
+                    <img src="{{ link }}" />
+                    <p>{{ title }} {{ link }}</p>
+                </a>
+            </div>
+        {{/each}}
+    </div>
 
-{{> header }}
-<h1>Gallery</h1>
-{{#each photos }}
-    {{#if featured}}
-        <div class='featured'>
-            <img src="{{ link }}" />
-        </div>
-    {{/if}}
-{{/each}}
 
-{{#each photos }}
-    <li data-postid="{{ image_id }}">
-        <a href='/gallery/{{ image_id }}'>
-            <img src="{{ link }}" />
-            <p>{{ title }} {{ link }}</p>
-        </a>
-    </li>
-{{/each}}
-
-<a class='button' href="/gallery/new">Upload</a>
-
-{{> footer }}
+    <a class='button' href="/gallery/new">Upload</a>
+</div>

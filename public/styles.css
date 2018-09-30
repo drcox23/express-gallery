@@ -1,2 +1,45 @@
 * {
   margin: 0 0; }
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  grid-column-gap: 10px; }
+
+.header {
+  grid-column: 2/6;
+  grid-row: 1/1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 10px;
+  background-color: aqua; }
+
+.header-logo {
+  grid-column: 1/4; }
+  .header-logo img {
+    width: 100%;
+    height: auto; }
+
+.header-about {
+  grid-column: 4/6; }
+
+.user-menu {
+  grid-column: 7/7; }
+
+.content {
+  grid-column: 2/6;
+  grid-row: 2/2; }
+
+.featured {
+  grid-column: 1/7; }
+
+.gallery {
+  grid-column: 1/7; }
+
+.footer {
+  grid-column: 1/7;
+  grid-row: 3/3;
+  background-color: aquamarine; }
