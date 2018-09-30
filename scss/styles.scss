@@ -17,7 +17,6 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 10px;
-    background-color: aqua;
 };
 
 .header-logo {
@@ -43,14 +42,27 @@
 
 .featured {
     grid-column: 1/7;
+    img {
+        object-fit: cover;
+        width: 100%;
+        max-height: 100%;
+    }
 }
 
 .gallery {
     grid-column: 1/7;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
 }
 
 .post{
-    
+    grid-column: span 1;
+    img {
+        object-fit: cover;
+        width: 100%;
+        max-height: 100%;
+    }
 
 }
 
