@@ -56,6 +56,7 @@ app.get('/', (req, res) => {
         const featured = photos;
         // console.log("featured photo", featured)
         res.render('home', {
+
           featured
         })
       }
