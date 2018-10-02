@@ -4,6 +4,18 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 
+router.get('/register', (req, res) => {
+    console.log("register page")
+    res.render('upload') //add "register details to pass along"
+})
+
+router.get('/login', (req, res) => {
+    console.log("login page")
+    res.render('upload') //add "login details to pass along"
+})
+
+
+
 passport.serializeUser( (user, done) => {
     console.log('#3 ********************')
     console.log(user);
@@ -18,7 +30,10 @@ passport.deserializeUser( (user, done) => {
     .where({username: user.username})
     .fetch()
     .then( user => {
+        console.log("users***: ", user.toJSON())
+        // if(!user.username){
         user = user.toJSON()
+        // }else
         done(null, user)
     })
     .catch( err => {
@@ -28,13 +43,15 @@ passport.deserializeUser( (user, done) => {
 
 passport.use(new LocalStrategy({usernameField: 'username'}, (username, password, done) => {
     console.log('#2 ********************')
+    console.log("passport auth: ", password)
     Users
     .where({username})
     .fetch()
     .then( user => {
-        console.log(user)
         user = user.toJSON()
+        console.log("what's the user password? ", user.password)
         bcrypt.compare(password, user.password)
+
         .then( res => {
             if (res){
                 done(null, user)
@@ -50,14 +67,22 @@ passport.use(new LocalStrategy({usernameField: 'username'}, (username, password,
 
 }))
 
+router.post('/logout', (req, res) => {
+    req.logout()
+    console.log("logged the user out")
+    // res.send("user has been logged out")
+    res.redirect('/')
+})
+
 router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), (req, res) => {
+    console.log("check login", passport.authenticate)
     console.log('Post working')
     res.send('Im in')
 })
 
 router.post('/register', (req, res) => {
     const { username, password } = req.body
-
+    // console.log("username: ", username)
     bcrypt.genSalt(12)
     .then( salt => { 
         console.log('Salt', salt)
@@ -71,6 +96,7 @@ router.post('/register', (req, res) => {
     })
     .then( user => {
         user = user.toJSON
+        res.send("WE ARE REGISTERED")
         res.json(user)
         
     })
