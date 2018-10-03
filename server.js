@@ -11,14 +11,10 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const Images = require('./knex/models/Images');
 const Users = require('./knex/models/Users');
 
-<<<<<<< HEAD
 // const galleryRoutes = require("./routes/galleryRoutes");
 // const userRoutes = require("./routes/userRoutes");
-=======
-const galleryRoutes = require("./routes/galleryRoutes");
-const userRoutes = require("./routes/userRoutes");
+
 const authRoutes = require("./routes/authRoutes");
->>>>>>> auth
 
 const app = express();
 
@@ -36,10 +32,12 @@ app.use(methodOverride("_method"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-<<<<<<< HEAD
+
 // app.use("/gallery", galleryRoutes);
 // app.use("/user", userRoutes);
-=======
+app.use('/auth', authRoutes)
+
+
 app.use(session ({
   store: new RedisStore({url: 'redis://redis:6379'}),
   secret: 'SnekPass',
@@ -49,10 +47,6 @@ app.use(session ({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/auth', authRoutes)
-app.use("/gallery", galleryRoutes);
-
->>>>>>> auth
 
 // GET HOME
 app.get('/', (req, res) => {
@@ -66,7 +60,6 @@ app.get('/', (req, res) => {
         const featured = photos;
         // console.log("featured photo", featured)
         res.render('home', {
-
           featured
         })
       }
@@ -105,7 +98,7 @@ app.get('/gallery', (req, res) => {
 
 /// GET Upload
 app.get('/new', (req, res) => {
-  console.log(req)
+  // console.log(req)
   const addImage = true
     res.render('upload', { addImage });
  
@@ -224,9 +217,11 @@ app.delete('/:id', (req, res) => {
 
 /// get login
 app.get('/login', (req, res) => {
-  console.log(req)
-  const addImage = true
-    res.render('login', { addImage });
+  console.log("on the login page")
+  const addImage = true;
+  console.log("login stuff: ", {addImage});
+  // res.render('login', {addImage} );
+  res.redirect('/login.hbs')
   
 
 })
