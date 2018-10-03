@@ -1,15 +1,29 @@
-<div class='idp'>
-    <h1>{{ title }}</h1>
-    <br> <img src="{{ link }}">
-    <br> {{ author }} {{ description }}
-    <br>
-    {{!-- <a href="/gallery/{{image_id}}/edit" type=button>Edit</a> --}}
+<div class='maincontent'>
+    <div class='imagedetail'>
+        {{#with mainimage}}
+                <img src="{{ link }}">
+                <br> <h1 class='special'>{{ title }}</h1>
+                <br> {{ author }} 
+                <br> {{ description }}
+                {{!-- <form method="get" action="{{ image_id }}/edit">
+                    <button class='button' type='submit'>Edit</button>
+                </form> --}}
+                <br> <a class='button' href="/edit?image_id={{image_id}}">Edit</a>
+
+                <form method="post" action="/{{image_id}}?_method=DELETE">
+                    <button class='button' type='submit'>Delete</button>
+                </form>
+        {{/with}}
+     </div>
 </div>
-<div class='new'>
-    <form method="get" action="{{ image_id }}/edit">
-        <button class='button' type='submit'>Edit</button>
-    </form>
-    <form method="post" action="/gallery/{{image_id}}?_method=DELETE">
-        <button class='button' type='submit'>Delete</button>
-    </form>
+<div class='sidebar'>
+    <div class='imagelist'>
+        {{#each photos }}
+            <a class='sidebarimage' href='/{{ image_id }}'>
+                <img src="{{ link }}" />
+                <p> {{ title }}
+                </p>
+            </a> 
+        {{/each}}
+    </div>
 </div>

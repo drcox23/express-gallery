@@ -1,17 +1,23 @@
-<form action="/gallery/new" method="post">
-{{#if addImage}}
-<label>Title:
-    <input type="text" name="title" id="" required>
-  </label>
-  <label>Author:
-    <input type="text" name="author" id="" required>
-  </label>
-  <label>Link:
-    <input type="text" name="link" id="" required>
-  </label>
-   <label>Description:
-    <input type="textarea" name="description" id="" required>
-  </label>
-  <input type="submit" value="Submit" required>
-</form>
-{{/if}}
+<div class='content'>
+    <form class='form' action="/new" method="post">
+      {{#if addImage}}
+        <label class="has-float-label">
+          <input type="text" name="title" placeholder="Image title" required>
+          <span>Title</span>
+        </label>
+        <label class="has-float-label">
+          <input type="text" name="author" placeholder="Author name" required>
+          <span>Author</span>
+        </label>
+        <label class="has-float-label">
+          <input type="text" name="link" placeholder="URL" required>
+          <span>Image link</span>
+        </label>
+        <label class="has-float-label">
+          <textarea rows="5" cols="30" name="description" placeholder="Details about this image" required></textarea>
+          <span>Description</span>
+        </label>
+        <input type="submit" value="Submit" required>
+      {{/if}}
+    </form>
+</div>
