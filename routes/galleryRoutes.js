@@ -132,21 +132,21 @@
 //     })
 // })
 
-router.delete('/:id', (req, res) => {
+// router.delete('/:id', (req, res) => {
   
-  const image_id = req.params.id;
-  console.log("delete: ", image_id);
+//   const image_id = req.params.id;
+//   console.log("delete: ", image_id);
 
-  Images
-  .where({image_id})
-  .destroy()
-  .then(results => {
-    res.redirect('/')
-  })
-  .catch(err => {
-    console.log("delete error: ", err);
-  })
-})
+//   Images
+//   .where({image_id})
+//   .destroy()
+//   .then(results => {
+//     res.redirect('/')
+//   })
+//   .catch(err => {
+//     console.log("delete error: ", err);
+//   })
+// })
 
 
 

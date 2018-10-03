@@ -181,9 +181,32 @@ app.put('/:id', (req, res) => {
     })
 })
 
+app.delete('/:id', (req, res) => {
+  
+  const image_id = req.params.id;
+  console.log("delete: ", image_id);
+
+  Images
+  .where({image_id})
+  .destroy()
+  .then(results => {
+    res.redirect('/')
+  })
+  .catch(err => {
+    console.log("delete error: ", err);
+  })
+})
 
 
 
+/// get login
+app.get('/login', (req, res) => {
+  console.log(req)
+  const addImage = true
+    res.render('login', { addImage });
+  
+
+})
 
 
 

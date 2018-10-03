@@ -15,6 +15,36 @@ $bluedark: #2A5C78;
     box-sizing: border-box;
 };
 
+a {
+    text-decoration: none;
+    color: $blue;
+}
+
+a:hover {
+    color: $bluelight;
+}
+a:active {
+    color: $bluedark;
+}
+
+button {
+    background-color: $blue;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    width: 100%;
+}
+button:hover {
+    background-color: $bluelight;
+}
+button:active {
+    background-color: $bluedark;
+    outline: none;
+}
+
 
 .wrapper {
     width: 100vw;
@@ -89,20 +119,16 @@ $bluedark: #2A5C78;
 .gallery {
     grid-column: 2/6;
     grid-row: 1/1;
-    padding: 20px 0px 0px 0px;
+    padding: 30px 0px 0px 0px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
     a {
-        text-decoration: none;
-        color: $medgrey; 
         p {
             padding-top: 10px;
         }
     };
-    a:hover {
-        color: $blue;
-    }
+
 };
 
 .card {
@@ -114,6 +140,22 @@ $bluedark: #2A5C78;
         height: auto;
     }
 }
+.formpostion {
+    max-width: 540px;
+    margin: 0 auto;
+    h1 {
+        margin-bottom: 10px;
+        margin-left: 20px;
+        color: $medgrey;
+    }
+}
+
+.box {
+    border-left: 1px solid $lightgrey;
+    border-top: 1px solid $lightgrey;
+    padding: 20px;
+}
+
 
 .form {
     max-width: 500px;
@@ -132,6 +174,7 @@ $bluedark: #2A5C78;
         color: #ffffff;
         padding: 15px;
         font-size: 1.2em;
+        border: none;
     }
     input[type=submit]:hover {
         background-color: $bluelight;
@@ -146,10 +189,29 @@ $bluedark: #2A5C78;
 .imagedetail {
     max-width: 100%;
     grid-column: 1fr;
-    margin: 0px 0px 30px 0px;
+    margin: 0px 10px 30px 0px;
+    border-right: 1px solid $lightgrey;
+    padding-right: 20px;
     img {
         width: 100%;
         height: auto;
+        margin-bottom: 10px;
+    }
+    h1 {
+        margin-bottom: 10px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    P {
+        margin-bottom: 10px;
+        color: $medgrey;
+    }
+    a {
+        float: right;
+        margin: 10px 20px 0px 0px;
+    }
+    button {
+        max-width: 120px;
     }
 }
 

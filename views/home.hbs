@@ -9,6 +9,9 @@
             <br>
         {{/if}}
     {{/each}}
+        <form method="get" action="/new">
+            <button class='button' type='submit'>Upload</button>
+        </form>
     <div class='gallery'>
         {{#each photos }}
             <a class='card' href='/{{ image_id }}'>
@@ -17,13 +20,6 @@
                     {{ title }}
                 </p>
             </a>
-            
         {{/each}}
-
-
     </div>
-       
-
-
-    <a class='button' href="/new">Upload</a>
 </div>
