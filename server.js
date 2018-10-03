@@ -1,15 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const knex = require('./knex/knex.js')
 const expressHbs = require('express-handlebars');
 const methodOverride = require('method-override')
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const passport = require('passport');
+
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const Images = require('./knex/models/Images');
 const Users = require('./knex/models/Users');
 
+<<<<<<< HEAD
 // const galleryRoutes = require("./routes/galleryRoutes");
 // const userRoutes = require("./routes/userRoutes");
+=======
+const galleryRoutes = require("./routes/galleryRoutes");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+>>>>>>> auth
 
 const app = express();
 
@@ -27,23 +36,37 @@ app.use(methodOverride("_method"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+<<<<<<< HEAD
 // app.use("/gallery", galleryRoutes);
 // app.use("/user", userRoutes);
+=======
+app.use(session ({
+  store: new RedisStore({url: 'redis://redis:6379'}),
+  secret: 'SnekPass',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use('/auth', authRoutes)
+app.use("/gallery", galleryRoutes);
+
+>>>>>>> auth
 
 // GET HOME
 app.get('/', (req, res) => {
-  // res.sendfile('./index.html');
-  // res.send('sanity check')
   console.log("It's working!");
   Images
     .fetchAll()
     .then(images => {
       const photos = images.toJSON();
-      console.log("photo info: ", photos);
+      // console.log("photo info: ", photos);
       if (photos.featured === true) {
         const featured = photos;
-        console.log("featured photo", featured)
+        // console.log("featured photo", featured)
         res.render('home', {
+
           featured
         })
       }
