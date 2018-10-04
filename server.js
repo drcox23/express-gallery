@@ -10,10 +10,10 @@ const path = require('path');
 
 const PORT = process.env.EXPRESS_CONTAINER_PORT;
 const Images = require('./knex/models/Images');
-const Users = require('./knex/models/Users');
+// const Users = require('./knex/models/Users');
 
 const galleryRoutes = require("./routes/galleryRoutes");
-const userRoutes = require("./routes/userRoutes");
+// const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();

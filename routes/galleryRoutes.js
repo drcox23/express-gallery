@@ -62,6 +62,39 @@ router.post('/new', (req, res) => {
   })
 })
 
+// render edits of the gallery image
+router.put('/:id', (req, res) => {
+  const data = req.body;
+  const  image_id  = req.params.id
+  // console.log("whats the id", image_id);
+  // console.log("the data goods: ", data);
+
+  const newInfo = {
+    title: data.title,
+    author: data.author,
+    link: data.link,
+    description: data.description
+
+  }
+
+  Images
+    .where({image_id})
+    .fetch()
+    .then(update => {
+      return update.save(newInfo)
+    })
+    .then(results => {
+      const photos = results.toJSON()
+      console.log("checking put stuff:", photos)
+      res.redirect(`/gallery/${photos.image_id}`)
+    })
+    .catch(err => {
+      console.log("put error: ", err)
+    })
+
+})
+
+
 // get to edit an individual gallery photo
 router.get('/edit/:id', (req, res) => {
   const image_id = req.params.id;
@@ -79,6 +112,7 @@ router.get('/edit/:id', (req, res) => {
     res.json(err);
   })
 })
+
 
 //get individual gallery image
 router.get('/:id', (req, res) => {
@@ -103,37 +137,8 @@ router.get('/:id', (req, res) => {
 
 })
 
-// edit the gallery image
-router.put('/:id', (req, res) => {
-  const data = req.body;
-  const  image_id  = req.params.id
-  // console.log("whats the id", image_id);
-  // console.log("the data goods: ", data);
 
-  const newInfo = {
-    title: data.title,
-    author: data.author,
-    link: data.link,
-    description: data.description
 
-  }
-
-  Images
-    .where({image_id})
-    .fetch()
-    .then(update => {
-      return update.save(newInfo)
-    })
-    .then(results => {
-      const photos = results.toJSON()
-      // console.log("checking put stuff:", photos)
-      res.render('idp', photos)
-    })
-    .catch(err => {
-      console.log("put error: ", err)
-    })
-
-})
 
 router.delete('/:id', (req, res) => {
   
