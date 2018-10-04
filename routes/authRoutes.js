@@ -4,28 +4,18 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 
-router.get('/register', (req, res) => {
-    console.log("register page")
-    res.render('upload') //add "register details to pass along"
-})
-
-router.get('/login', (req, res) => {
-    console.log("login page")
-    res.render('upload') //add "login details to pass along"
-})
-
-
 
 passport.serializeUser( (user, done) => {
-    console.log('#3 ********************')
-    console.log(user);
+    // console.log('#3 ********************')
+    console.log("passport.serialize", user);
     done(null, {
-        username: user.username
+        username: user.username,
+        // isAuthenticated = true,
     })
 })
 
 passport.deserializeUser( (user, done) => {
-    console.log('#1 ********************')
+    // console.log('#1 ********************')
     Users
     .where({username: user.username})
     .fetch()
@@ -42,7 +32,6 @@ passport.deserializeUser( (user, done) => {
 })
 
 passport.use(new LocalStrategy({usernameField: 'username'}, (username, password, done) => {
-    console.log('#2 ********************')
     console.log("passport auth: ", password)
     Users
     .where({username})
@@ -76,8 +65,11 @@ router.post('/logout', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), (req, res) => {
     console.log("check login", passport.authenticate)
+    let user = {}
+    // user.username = req.body.username;
+    // user.isAuthenticated = true;
     console.log('Post working')
-    res.send('Im in')
+    res.redirect('/')
 })
 
 router.post('/register', (req, res) => {
