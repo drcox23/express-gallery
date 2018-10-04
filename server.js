@@ -43,6 +43,12 @@ app.use(passport.session())
 app.use('/auth', authRoutes)
 // app.use("/gallery", galleryRoutes);
 
+// const checkAuthenticated (req, res, next) => {
+//   if(req.isAuthenticated()){
+
+//   }
+// }
+
 
 // GET HOME
 app.get('/', (req, res) => {
@@ -56,7 +62,6 @@ app.get('/', (req, res) => {
         const featured = photos;
         // console.log("featured photo", featured)
         res.render('home', {
-
           featured
         })
       }
@@ -92,6 +97,8 @@ app.get('/gallery', (req, res) => {
     res.json("get all error: ", err);
   }) 
 })
+
+
 
 /// GET Upload
 app.get('/new', (req, res) => {
@@ -148,6 +155,12 @@ app.get('/login', (req, res) => {
     res.render('login', { addImage });
 })
 
+app.get('/failedreg', (req, res) => {
+  // console.log(req)
+  const addImage = true
+    res.render('failedreg', { addImage });
+})
+
 /// get register
 app.get('/register', (req, res) => {
   // console.log(req)
@@ -190,7 +203,7 @@ app.put('/:id', (req, res) => {
     title: data.title,
     author: data.author,
     link: data.link,
-    description: data.link
+    description: data.description
   }
   Images
     .where({image_id})
@@ -201,7 +214,7 @@ app.put('/:id', (req, res) => {
     .then(results => {
       const photos = results.toJSON()
       console.log("checking put stuff:", photos)
-      res.render('idp', photos)
+      res.redirect(`/${photos.image_id}`)
     })
     .catch(err => {
       console.log("put error: ", err)

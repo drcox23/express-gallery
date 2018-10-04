@@ -49,9 +49,8 @@ passport.use(new LocalStrategy({usernameField: 'username'}, (username, password,
     .fetch()
     .then( user => {
         user = user.toJSON()
-        console.log("what's the user password? ", user.password)
+        // console.log("what's the user password? ", user.password)
         bcrypt.compare(password, user.password)
-
         .then( res => {
             if (res){
                 done(null, user)
@@ -74,32 +73,73 @@ router.post('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.post('/login', passport.authenticate('local', {failureRedirect: '/'}), (req, res) => {
+router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
     console.log("check login", passport.authenticate)
     console.log('Post working')
-    res.send('Im in')
+    res.redirect('/')
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', (req, res, done) => {
     const { username, password } = req.body
-    // console.log("username: ", username)
-    bcrypt.genSalt(12)
-    .then( salt => { 
-        console.log('Salt', salt)
-        return bcrypt.hash(password, salt)
-    })
-    .then(hash => {
-        console.log('Hash', hash)
-        return Users
-        .forge({username, password: hash})
-        .save()
-    })
-    .then( user => {
-        user = user.toJSON
-        res.send("WE ARE REGISTERED")
-        res.json(user)
+    console.log("trying to create a new user***** ", username)
+    // let salt = bcrypt.genSalt(12)
+    Users
+    .where({username})
+    .fetch()
+    .then( results => {
+        console.log("RESULTS************: ", results)
+        // const userResults = results.toJSON()
+        // console.log("RESULTS!!: ", userResults)
+        if (results){
+            console.log("****************username exists********")
+            res.redirect('/failedreg')
+            done(null, false)
+        } else {
+        // console.log('Salt', salt)
+        console.log("PASSSSSSSSSS: ", password)
+        bcrypt.hash(password, 12, (err, hash) => {
+            console.log("HASSSHHHHHHHHHHHH: ", hash)
+            return Users
+            .forge({username, password: hash})
+            .save()
+            .then( user => {
+                user = user.toJSON
+                res.redirect('/login')
+                // res.json(user)
+                
+            })
+        })
+        // .then( salt => { 
+        //     // console.log('Salt', salt)
+        //     return bcrypt.hash(password, salt)
+        // })
+        // .then( hash => {
+        //     console.log('Hash', hash)
+        //     return Users
+        //     .forge({username, password: hash})
+        //     .save()
+        // })
+       
+        }
         
+
     })
+    // .then( salt => { 
+    //     // console.log('Salt', salt)
+    //     return bcrypt.hash(password, salt)
+    // })
+    // .then( hash => {
+    //     console.log('Hash', hash)
+    //     return Users
+    //     .forge({username, password: hash})
+    //     .save()
+    // })
+    // .then( user => {
+    //     user = user.toJSON
+    //     res.redirect('/login')
+    //     // res.json(user)
+        
+    // })
     .catch( err => {
         console.log('Err', err)
         res.json(err)

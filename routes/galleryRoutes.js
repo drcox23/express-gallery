@@ -94,7 +94,7 @@ router.put('/:id', (req, res) => {
     title: data.title,
     author: data.author,
     link: data.link,
-    description: data.link
+    description: data.description
 
   }
 
@@ -110,7 +110,7 @@ router.put('/:id', (req, res) => {
       res.render('idp', photos)
     })
     .catch(err => {
-      // console.log("put error: ", err)
+      console.log("put error: ", err)
     })
 
 })
