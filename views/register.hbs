@@ -1,11 +1,11 @@
 <div class='content'>
   <div class='formpostion'>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <div class='box' >
-      <form class='form' action="/" method="">
-        {{#if addImage}}
+      <form class='form' action="/auth/register" method="post">
+        {{!-- {{#if addImage}} --}}
           <label class="has-float-label">
-            <input type="text" name="username" placeholder="JoePhoto" required>
+            <input type="text" name="username" placeholder="Who are you" required>
             <span>Username</span>
           </label>
           <label class="has-float-label">
@@ -13,8 +13,9 @@
             <span>Password</span>
           </label>
           <input type="submit" value="Submit" required>
-        {{/if}}
+        {{!-- {{/if}} --}}
       </form>
+      <a class='ghostbutton' href="/login">Already have an account? Login here ></a>
     </div>
   </div>
 </div>

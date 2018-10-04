@@ -154,12 +154,14 @@ button:active {
     border-left: 1px solid $lightgrey;
     border-top: 1px solid $lightgrey;
     padding: 20px;
+
 }
 
 
 .form {
     max-width: 500px;
     margin: 0 auto;
+    margin-bottom: 10px;
     label {
         margin: 20px 0px 20px 0px;
         color: $blue;
@@ -173,6 +175,7 @@ button:active {
         background-color: $blue;
         color: #ffffff;
         padding: 15px;
+        margin: 10px 0px 20px 0px;
         font-size: 1.2em;
         border: none;
     }
@@ -185,6 +188,8 @@ button:active {
     }
 
 }
+
+
 
 .imagedetail {
     max-width: 100%;

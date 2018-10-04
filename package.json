@@ -28,11 +28,8 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-<<<<<<< HEAD
-    "float-label-css": "^1.0.2",
-=======
     "express-session": "^1.15.6",
->>>>>>> development
+    "float-label-css": "^1.0.2",
     "knex": "^0.15.2",
     "method-override": "^3.0.0",
     "passport": "^0.4.0",

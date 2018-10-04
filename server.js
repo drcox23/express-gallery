@@ -95,7 +95,7 @@ app.get('/gallery', (req, res) => {
 
 /// GET Upload
 app.get('/new', (req, res) => {
-  console.log(req)
+  // console.log(req)
   const addImage = true
     res.render('upload', { addImage });
  
@@ -139,6 +139,20 @@ app.get('/edit', (req, res) => {
     .catch(err => {
       res.json(err);
     })
+})
+
+/// get login
+app.get('/login', (req, res) => {
+  // console.log(req)
+  const addImage = true
+    res.render('login', { addImage });
+})
+
+/// get register
+app.get('/register', (req, res) => {
+  // console.log(req)
+  const addImage = true
+    res.render('register', { addImage });
 })
 
 /// get image detail page
@@ -212,14 +226,7 @@ app.delete('/:id', (req, res) => {
 
 
 
-/// get login
-app.get('/login', (req, res) => {
-  console.log(req)
-  const addImage = true
-    res.render('login', { addImage });
-  
 
-})
 
 
 
