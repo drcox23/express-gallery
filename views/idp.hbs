@@ -2,12 +2,12 @@
     <div class='imagedetail'>
         {{#with mainimage}}
                 <img src="{{ link }}">
-                <h1 class='special'>{{ title }}</h1><a class='button' href="/edit?image_id={{image_id}}">Edit</a>
+                <h1 class='special'>{{ title }}</h1><a class='button' href="/gallery/edit/{{image_id}}">Edit</a>
                 <p>{{ author }}</p>
                 <p>{{ description }}</p>
 
 
-                <form method="post" action="/{{image_id}}?_method=DELETE">
+                <form method="post" action="/gallery/{{image_id}}?_method=DELETE">
                     <button class='button' type='submit'>Delete</button>
                 </form>
         {{/with}}

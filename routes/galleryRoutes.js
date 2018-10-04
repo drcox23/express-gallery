@@ -62,24 +62,44 @@ router.post('/new', (req, res) => {
   })
 })
 
+// get to edit an individual gallery photo
+router.get('/edit/:id', (req, res) => {
+  const image_id = req.params.id;
+  // console.log("editing image: ", image_id);
+  Images
+  .where({image_id})
+  .fetchAll()
+  .then(results => {
+    const temp = results.toJSON();
+    const photos = temp[0]
+    // console.log("results: ", photos)
+    res.render('edit', photos)
+  })
+  .catch(err => {
+    res.json(err);
+  })
+})
 
 //get individual gallery image
 router.get('/:id', (req, res) => {
-  // res.json("sanity check");
-   const image_id = req.params.id;
-  //  console.log("image id: ", image_id);
-     Images
-       .where({image_id})
-       .fetch()
-       .then( image => {
-        const photos = image.toJSON();
-        // console.log("get image")
-        // console.log("photo info: ", photos);
-        res.render('idp', photos)
-       })
-       .catch( err => {
-         res.json(err);
-       })
+  const image_id = req.params.id;
+  function filterid (item) {
+    if (item.image_id == image_id) {
+      return item
+    }
+  }
+  Images
+    .fetchAll()
+    .then(images => {
+      const photos = images.toJSON();
+      const temp = photos.filter(filterid)
+      const mainimage = temp[0]
+      // console.log("photo info: ", mainimage);
+      res.render('idp', { mainimage, photos })
+    })
+    .catch(err => {
+      res.json("get all error: ", err);
+    })
 
 })
 
@@ -115,23 +135,6 @@ router.put('/:id', (req, res) => {
 
 })
 
-// get to edit an individual gallery photo
-router.get('/:id/edit', (req, res) => {
-  const image_id = req.params.id;
-  // console.log("editing image: ", image_id);
-  Images
-    .where({image_id})
-    .fetchAll()
-    .then(results => {
-      const photos = results.toJSON();
-      // console.log("results: ", photos[0])
-      res.render('edit', photos[0])
-    })
-    .catch(err => {
-      res.json(err);
-    })
-})
-
 router.delete('/:id', (req, res) => {
   
   const image_id = req.params.id;
@@ -147,15 +150,6 @@ router.delete('/:id', (req, res) => {
     console.log("delete error: ", err);
   })
 })
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
