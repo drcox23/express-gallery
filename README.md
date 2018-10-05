@@ -2,27 +2,6 @@ Express Gallery]
 ===============
 
 
-
-////// DOCKER SETUP
-.env file 
-```json
-IMAGE_VERSION=1.0.0
-
-EXPRESS_CONTAINER_PORT=8989
-EXPRESS_HOST_PORT=8989
-
-POSTGRES_HOST_PORT=8765
-POSTGRES_CONTAINER_PORT=5432
-POSTGRES_HOSTNAME=db 
-POSTGRES_USER=jefrady
-POSTGRES_PASSWORD=SnekPas
-POSTGRES_DB=dbname
-
-REDIS_HOST_PORT=6379
-REDIS_CONTAINER_PORT=6379
-```
-///////
-
 Express, Knex.js, Bookshelf.js, HTML5, stored on PostgreSQL
 
 Use the Express, Knex.js, Bookshelf.js, and *almost* any other library or templating engines you want to fulfill the requirements.

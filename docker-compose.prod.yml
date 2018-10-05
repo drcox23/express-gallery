@@ -1,7 +1,7 @@
 version: '3'
 services:
   express-gallery:
-    image: jefrady/express-gallery:${IMAGE_VERSION}-local
+    image: jefrady/express-gallery:${IMAGE_VERSION}
     depends_on:
       - db
     command: ["npm", "run", "dev"]
@@ -14,8 +14,6 @@ services:
       NODE_ENV: production
     ports:
       - "${EXPRESS_HOST_PORT}:${EXPRESS_CONTAINER_PORT}"
-      - '3000:3000'
-      - '3001:3001'
     networks:
       - my-app-network
   db:

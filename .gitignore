@@ -31,5 +31,7 @@ node_modules
 *.DS_Store
 
 # ENV files
-.env*
+*.env*
+*.prod.env
+
 
