@@ -67,9 +67,16 @@ button:active {
 
 .user-menu {
   grid-column: 6/6;
-  padding: 20px;
   text-align: center;
   height: 25px; }
+
+.dropdown-content {
+  border: 1px solid #418AB4;
+  padding: 0px 10px 0px 10px;
+  display: none; }
+
+.dropdown:hover .dropdown-content {
+  display: block; }
 
 .content {
   grid-column: 2/6;
