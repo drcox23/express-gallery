@@ -133,6 +133,7 @@ router.put('/:id', (req, res) => {
 // get to edit an individual gallery photo
 router.get('/edit/:id', (req, res) => {
   const image_id = req.params.id;
+  console.log("CAN WE EDITTTTTTT")
   if(req.user){
     const isAuthed = true;
     console.log("REQ.USER**** ", req.user)
@@ -142,8 +143,9 @@ router.get('/edit/:id', (req, res) => {
     .then(results => {
       const temp = results.toJSON();
       const photos = temp[0]
+      console.log("WHATS PHOTOS????", photos)
       // console.log("results: ", photos)
-      res.render('edit', photos, {isAuthed})
+      res.render('edit', {photos, isAuthed})
     })
     .catch(err => {
       res.json(err);

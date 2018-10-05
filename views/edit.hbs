@@ -2,21 +2,21 @@
   <div class='formpostion'>
     <h1>Edit</h1>
     <div class='box' >
-      <form class='form' action="/gallery/{{image_id}}?_method=PUT" method="post">
+      <form class='form' action="/gallery/{{photos.image_id}}?_method=PUT" method="post">
             <label class="has-float-label">
-              <input type="text" name="title" placeholder="Image title" value="{{title}}"required>
+              <input type="text" name="title" placeholder="Image title" value="{{photos.title}}"required>
               <span>Title</span>
             </label>
             <label class="has-float-label">
-              <input type="text" name="author" placeholder="Author name" value="{{author}}" required>
+              <input type="text" name="author" placeholder="Author name" value="{{photos.author}}" required>
               <span>Author</span>
             </label>
             <label class="has-float-label">
-              <input type="text" name="link" placeholder="URL" value="{{link}}" required>
+              <input type="text" name="link" placeholder="URL" value="{{photos.link}}" required>
               <span>Image link</span>
             </label>
             <label class="has-float-label">
-              <textarea rows="10" cols="30" name="description" placeholder="Details about this image" id="" required>{{description}}</textarea>
+              <textarea rows="10" cols="30" name="description" placeholder="Details about this image" id="" required>{{photos.description}}</textarea>
               <span>Description</span>
             </label>
             <input type="submit" value="Submit" required>
