@@ -1,5 +1,6 @@
 <div class='content'>
   <div class='formpostion'>
+    {{#if isAuthed}}
     <h1>Upload</h1>
     <div class='box' >
       <form class='form' action="/gallery/new" method="post">
@@ -24,5 +25,9 @@
         {{/if}}
       </form>
     </div>
+    
+    {{else}}
+    <h1>"Please login to upload</h1>
+    {{/if}}
   </div>
 </div>

@@ -52,12 +52,13 @@ app.use("/gallery", galleryRoutes);
 
 // GET HOME
 app.get('/', (req, res) => {
-  console.log("Home", req);
+  // console.log("Home", req);
+  console.log("REQUSER********", req.user)
   Images
     .fetchAll()
     .then(images => {
       const photos = images.toJSON();
-      console.log("photo info: ", photos);
+      // console.log("photo info: ", photos);
       if (photos.featured === true) {
         const featured = photos;
 
@@ -82,6 +83,7 @@ app.get('/login', (req, res) => {
     res.render('login', { addImage });
 })
 
+// can't register because username exists
 app.get('/failedreg', (req, res) => {
   // console.log(req)
   const addImage = true

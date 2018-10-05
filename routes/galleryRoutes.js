@@ -4,6 +4,10 @@ const express = require("express");
 const router = express.Router();
 const Images = require('../knex/models/Images');
 // const knex = require('../knex/knex.js')
+// const authRoutes = require("./routes/authRoutes");
+
+// app.use('/auth', authRoutes)
+
 
 // get /gallery
 router.get('/', (req, res) => {
@@ -36,7 +40,15 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
   // console.log("adding a new image")
   const addImage = true
-    res.render('upload', { addImage });
+  if(req.user){
+    const isAuthed = true;
+    // console.log("Auth stuff******* ", req.session.passport.user.isAuthenticated)
+    console.log("REQ.USER**** ", req.user)
+    res.render('upload', { addImage, isAuthed });
+  }else{
+    // const isAuth = false
+    res.render('upload', {addImage})
+  }
 })
 
 
@@ -156,5 +168,16 @@ router.delete('/:id', (req, res) => {
   })
 })
 
+
+
+function checkAuth(req, res, done){
+  if (req.isAuthenticated()) {
+      let isAuthed = true;
+      done();
+  } else {
+      let notAuthed = true;
+      done();
+  }
+}
 
 module.exports = router;
