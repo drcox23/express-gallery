@@ -52,8 +52,12 @@ app.use("/gallery", galleryRoutes);
 
 // GET HOME
 app.get('/', (req, res) => {
-  // console.log("Home", req);
-  console.log("REQUSER********", req.user)
+  // res.sendfile('./index.html');
+  // res.send('sanity check')
+  // console.log("It's working!");
+  if(req.user){
+    const isAuthed = true;
+    console.log("REQ.USER**** ", req.user)
   Images
     .fetchAll()
     .then(images => {
@@ -61,18 +65,39 @@ app.get('/', (req, res) => {
       // console.log("photo info: ", photos);
       if (photos.featured === true) {
         const featured = photos;
-
+        // console.log("featured photo", featured)
         res.render('home', {
-          featured
+          featured, isAuthed
         })
       }
       res.render('home', {
-        photos
+        photos, isAuthed
       })
     })
     .catch(err => {
       res.json("get all error: ", err);
     })
+  }else{
+    Images
+    .fetchAll()
+    .then(images => {
+      const photos = images.toJSON();
+      // console.log("photo info: ", photos);
+      if (photos.featured === true) {
+        const featured = photos;
+        // console.log("featured photo", featured)
+        res.render('home', {
+          featured
+        })
+      }
+      res.render('home', {
+        photos 
+      })
+    })
+    .catch(err => {
+      res.json("get all error: ", err);
+    })
+  }
 
 })
 

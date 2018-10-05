@@ -14,7 +14,30 @@ router.get('/', (req, res) => {
   // res.sendfile('./index.html');
   // res.send('sanity check')
   // console.log("It's working!");
+  if(req.user){
+    const isAuthed = true;
+    console.log("REQ.USER**** ", req.user)
   Images
+    .fetchAll()
+    .then(images => {
+      const photos = images.toJSON();
+      // console.log("photo info: ", photos);
+      if (photos.featured === true) {
+        const featured = photos;
+        // console.log("featured photo", featured)
+        res.render('home', {
+          featured, isAuthed
+        })
+      }
+      res.render('home', {
+        photos, isAuthed
+      })
+    })
+    .catch(err => {
+      res.json("get all error: ", err);
+    })
+  }else{
+    Images
     .fetchAll()
     .then(images => {
       const photos = images.toJSON();
@@ -27,12 +50,13 @@ router.get('/', (req, res) => {
         })
       }
       res.render('home', {
-        photos
+        photos 
       })
     })
     .catch(err => {
       res.json("get all error: ", err);
     })
+  }
 
 })
 
@@ -42,7 +66,6 @@ router.get('/new', (req, res) => {
   const addImage = true
   if(req.user){
     const isAuthed = true;
-    // console.log("Auth stuff******* ", req.session.passport.user.isAuthenticated)
     console.log("REQ.USER**** ", req.user)
     res.render('upload', { addImage, isAuthed });
   }else{
@@ -110,6 +133,23 @@ router.put('/:id', (req, res) => {
 // get to edit an individual gallery photo
 router.get('/edit/:id', (req, res) => {
   const image_id = req.params.id;
+  if(req.user){
+    const isAuthed = true;
+    console.log("REQ.USER**** ", req.user)
+    Images
+    .where({image_id})
+    .fetchAll()
+    .then(results => {
+      const temp = results.toJSON();
+      const photos = temp[0]
+      // console.log("results: ", photos)
+      res.render('edit', photos, {isAuthed})
+    })
+    .catch(err => {
+      res.json(err);
+    })
+  }else{
+    // const isAuth = false
   // console.log("editing image: ", image_id);
   Images
   .where({image_id})
@@ -123,6 +163,7 @@ router.get('/edit/:id', (req, res) => {
   .catch(err => {
     res.json(err);
   })
+}
 })
 
 
@@ -134,7 +175,23 @@ router.get('/:id', (req, res) => {
       return item
     }
   }
+  if(req.user){
+    const isAuthed = true;
+    console.log("REQ.USER**** ", req.user)
   Images
+    .fetchAll()
+    .then(images => {
+      const photos = images.toJSON();
+      const temp = photos.filter(filterid)
+      const mainimage = temp[0]
+      // console.log("photo info: ", mainimage);
+      res.render('idp', { mainimage, photos, isAuthed })
+    })
+    .catch(err => {
+      res.json("get all error: ", err);
+    })
+  }else{
+    Images
     .fetchAll()
     .then(images => {
       const photos = images.toJSON();
@@ -146,10 +203,9 @@ router.get('/:id', (req, res) => {
     .catch(err => {
       res.json("get all error: ", err);
     })
+}
 
 })
-
-
 
 
 router.delete('/:id', (req, res) => {
@@ -170,14 +226,14 @@ router.delete('/:id', (req, res) => {
 
 
 
-function checkAuth(req, res, done){
-  if (req.isAuthenticated()) {
-      let isAuthed = true;
-      done();
-  } else {
-      let notAuthed = true;
-      done();
-  }
-}
+// function checkAuth(req, res, done){
+//   if (req.isAuthenticated()) {
+//       let isAuthed = true;
+//       done();
+//   } else {
+//       let notAuthed = true;
+//       done();
+//   }
+// }
 
 module.exports = router;
