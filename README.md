@@ -1,7 +1,6 @@
 Express Gallery]
 ===============
 
-
 Express, Knex.js, Bookshelf.js, HTML5, stored on PostgreSQL
 
 Use the Express, Knex.js, Bookshelf.js, and *almost* any other library or templating engines you want to fulfill the requirements.
