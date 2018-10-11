@@ -2,4 +2,4 @@ version: '3'
 services:
   express-gallery:
     build: .
-    image: jefrady/express-gallery:local
+    image: demifire/express-gallery:local

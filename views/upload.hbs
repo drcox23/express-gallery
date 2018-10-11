@@ -1,0 +1,33 @@
+<div class='content'>
+  <div class='formpostion'>
+    {{#if isAuthed}}
+    <h1>Upload</h1>
+    <div class='box' >
+      <form class='form' action="/gallery/new" method="post">
+        {{#if addImage}}
+          <label class="has-float-label">
+            <input type="text" name="title" placeholder="Image title" required>
+            <span>Title</span>
+          </label>
+          <label class="has-float-label">
+            <input type="text" name="author" placeholder="Author name" required>
+            <span>Author</span>
+          </label>
+          <label class="has-float-label">
+            <input type="text" name="link" placeholder="URL" required>
+            <span>Image link</span>
+          </label>
+          <label class="has-float-label">
+            <textarea rows="5" cols="30" name="description" placeholder="Details about this image" required></textarea>
+            <span>Description</span>
+          </label>
+          <input type="submit" value="Submit" required>
+        {{/if}}
+      </form>
+    </div>
+    
+    {{else}}
+    <h1>"Please login to upload</h1>
+    {{/if}}
+  </div>
+</div>

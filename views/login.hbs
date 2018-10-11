@@ -1,0 +1,21 @@
+<div class='content'>
+  <div class='formpostion'>
+    <h1>Login</h1>
+    <div class='box' >
+      <form class='form' action="/auth/login" method="post">
+        {{!-- {{#if addImage}} --}}
+          <label class="has-float-label">
+            <input type="text" name="username" placeholder="Who are you" required>
+            <span>Username</span>
+          </label>
+          <label class="has-float-label">
+            <input type="password" name="password" placeholder="Enter your pa$$W0rD" required>
+            <span>Password</span>
+          </label>
+          <input type="submit" value="Submit" required>
+        {{!-- {{/if}} --}}
+      </form>
+      <a class='ghostbutton' href="/register">New user? Register here ></a>
+    </div>
+  </div>
+</div>

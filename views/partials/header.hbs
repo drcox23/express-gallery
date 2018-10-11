@@ -1,0 +1,41 @@
+<div class='header'>
+    <a class='header-logo' href='/'>
+        <img src='/assets/Architekt-logo.svg'>
+    </a>
+    <div class='header-about'>Welcome to our online portfolio, we are a small group of passionate designers and architects looking to change and create amazing digital images. We hope to inspire others to follow in our innovative steps.</div>
+    <div class='user-menu'>
+        {{#if isAuthed}}
+        <div class="dropdown">
+            <button class="dropbtn"><i class="far fa-user-circle"></i> Account {{username}}</button>
+            <div class="dropdown-content">
+                <form method="get" action="/gallery/new">
+                    <button class='button' type='submit'>Upload</button>
+                </form>
+                <form method="get" action="/auth/logout">
+                    <button class='button' type='submit'>Logout</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+{{!-- 
+        <p><i class="far fa-user-circle"></i> Account {{username}}</p>
+        <div class='dropdown'>
+            <form method="get" action="/new">
+                <button class='button' type='submit'>Upload</button>
+            </form>
+            <form method="post" action="/logout">
+                <button class='button' type='submit'>Logout</button>
+            </form>
+
+        </div> --}}
+
+        {{else}}
+        <a class='button' href="/login">Login: {{username}}</a>
+        {{/if}}
+    </div>
+    
+</div>

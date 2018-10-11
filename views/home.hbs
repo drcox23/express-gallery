@@ -1,0 +1,25 @@
+<div class='content'>
+    {{#each photos }}
+        {{#if featured}}
+            <div class='featured'>
+                <a href='/gallery/{{ image_id }}'>
+                    <img src="{{ link }}" />    
+                </a>
+            </div>
+            <br>
+        {{/if}}
+    {{/each}}
+        {{!-- <form method="get" action="/gallery/new">
+            <button class='button' type='submit'>Upload</button>
+        </form> --}}
+    <div class='gallery'>
+        {{#each photos }}
+            <a class='card' href='/gallery/{{ image_id }}'>
+                <img class='card-image' src="{{ link }}" />
+                <p> 
+                    {{ title }}
+                </p>
+            </a>
+        {{/each}}
+    </div>
+</div>
